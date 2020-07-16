@@ -1,0 +1,23 @@
+
+.button {
+    width: 50px;
+    height: 50px;
+    margin: 5px auto;
+    color: #fff;
+    font-weight: bold;
+    background: dodgerblue;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button.checked {
+    color: #000;
+    background: yellow;
+}
+
+.button:focus {
+    color: #fff;
+    background: green;
+    outline: none;
+}
