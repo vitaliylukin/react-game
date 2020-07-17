@@ -2,6 +2,7 @@ import React from 'react';
 import './TableCell.css';
 
 const TableCell = props => {
+
     const colors = ['button'];
 
     if (props.isCurrent) {
@@ -11,7 +12,7 @@ const TableCell = props => {
     return (
         <button
             className={colors.join(' ')}
-            onClick={props.onChangeName}
+            onClick={() => props.onChangeName(props.name)}
         >
             {props.name}
         </button>

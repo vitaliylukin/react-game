@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import './App.css';
-import Table from './Table/Table';
+import Game from './Game/Game';
 
 
 class App extends Component {
     render() {
         return (
-            <Table />
+            <Game />
         );
     }
 }
