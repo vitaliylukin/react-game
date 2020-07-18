@@ -11,13 +11,19 @@
     cursor: pointer;
 }
 
-.button.checked {
+.button.current {
     color: #000;
     background: yellow;
 }
 
-.button:focus {
+.button.user {
     color: #fff;
     background: green;
+    outline: none;
+}
+
+.button.error {
+    color: #fff;
+    background: red;
     outline: none;
 }

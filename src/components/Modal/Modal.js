@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Portal from '../Portal/Portal';
-import Icon from '../Icon/Icon';
 import Button from '../Button/Button';
 
 import './Modal.css';
@@ -19,7 +18,6 @@ const Modal = ({
                     <div className="modalWindow">
                         <div className="modalHeader">
                             <div className="modalTitle">{title}</div>
-                            <Icon name="times" onClick={onCancel} />
                         </div>
                         <div className="modalBody">
                             {children}

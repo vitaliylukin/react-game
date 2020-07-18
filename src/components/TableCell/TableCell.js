@@ -6,13 +6,17 @@ const TableCell = props => {
     const colors = ['button'];
 
     if (props.isCurrent) {
-        colors.push('checked')
+        colors.push('current')
+    } else if (props.isUser) {
+        colors.push('user')
+    } else if (props.isError) {
+        colors.push('error')
     }
 
     return (
         <button
             className={colors.join(' ')}
-            onClick={() => props.onChangeName(props.name)}
+            onClick={() => props.onChangeButton(props.name)}
         >
             {props.name}
         </button>
