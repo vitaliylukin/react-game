@@ -15,6 +15,7 @@ const TableCell = props => {
 
     return (
         <button
+            color="primary"
             className={colors.join(' ')}
             onClick={() => props.onChangeButton(props.name)}
         >

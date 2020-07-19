@@ -11,15 +11,14 @@ class App extends Component {
 
         this.state = {
             cells: new Array(100,).fill('', 0, 100),
-            pageTitle: 'Игра',
             playerPoint: 0,
             computerPoint: 0,
             playerName: '',
             changeTime: 2000,
             isOpen: false,
             currentCell: null,
-            userCell: false,
-            errorCell: false,
+            userCell: null,
+            errorCell: null,
         };
     }
 
@@ -60,13 +59,7 @@ class App extends Component {
         } else if (this.state.currentCell !== name) {
             this.setState(prevState => {
                 return {
-                    computerPoint: prevState.computerPoint + 1
-                }
-            })
-        } else {
-            this.setState(prevState => {
-                return {
-                    userError: name,
+                    errorCell: name,
                     computerPoint: prevState.computerPoint + 1
                 }
             })
@@ -98,8 +91,6 @@ class App extends Component {
 
         return (
             <Layout>
-                {/*Заголовок*/}
-                <h1>{this.state.pageTitle}</h1>
 
                 {/*Компонент TopPanel*/}
                 <TopPanel
@@ -110,7 +101,10 @@ class App extends Component {
                 />
 
                 {/*Ячейки таблицы*/}
-                <div>
+                <div style={{
+                    maxWidth: '700px',
+                    margin: '0 auto'
+                }}>
                     { this.state.cells.map((car, index) => {
 
                         return (
@@ -119,9 +113,7 @@ class App extends Component {
                                 name={index + 1}
                                 isCurrent={index === this.state.currentCell}
                                 isUser={index === this.state.userCell}
-                                isError={index === this.state.userError}
-                                /*
-                                isError={}*/
+                                isError={index === this.state.errorCell}
                                 onChangeButton={this.onChangeButton.bind(this, index)}
                             />
                         )

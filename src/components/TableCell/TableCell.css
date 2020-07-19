@@ -1,7 +1,7 @@
 
 .button {
-    width: 50px;
-    height: 50px;
+    width: 10%;
+    height: 60px;
     margin: 5px auto;
     color: #fff;
     font-weight: bold;
@@ -16,6 +16,7 @@
     background: yellow;
 }
 
+.button.current:focus,
 .button.user {
     color: #fff;
     background: green;

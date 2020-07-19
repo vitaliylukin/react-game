@@ -1,33 +1,65 @@
 import React from 'react';
-import classes from './TopPanel.module.css';
-import Button from "../Button/Button";
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
 
 const TopPanel = ({playerPoint, computerPoint, changeTime, startGame}) => {
-    return (
-        <div className={classes.TopPanel}>
 
+    const useStyles = makeStyles({
+        button: {
+            display: 'block',
+            margin: '20px auto'
+        },
+        table: {
+            maxWidth: 450,
+            margin: '20px auto',
+        }
+    });
+
+    const classes = useStyles();
+
+    function createData(first, second) {
+        return { first, second };
+    }
+
+    const rows = [
+        createData(playerPoint, computerPoint),
+    ];
+
+    return (
+        <div>
             {/*Строка-счет*/}
-            <h2>Счет</h2>
-            <table style={{margin: 'auto'}}>
-                <thead>
-                <tr>
-                    <th>Игрок / </th>
-                    <th>Компьютер</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>{playerPoint}</td>
-                    <td>{computerPoint}</td>
-                </tr>
-                </tbody>
-            </table>
+            <TableContainer>
+                <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center">Игрок</TableCell>
+                            <TableCell align="center">Компьютер</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows.map((row) => (
+                            <TableRow key={row.first}>
+                                <TableCell align="center">{row.first}</TableCell>
+                                <TableCell align="center">{row.second}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
            {/* Инпут для ввода времени в mc*/}
-            <input type="text" onChange={changeTime} placeholder="2000" />
+            <TextField size="small" label="Ввести время" variant="outlined" onChange={changeTime} />
 
             {/*Кнопка "Начать"*/}
-            <Button onClick={startGame}>Начать</Button>
+            <Button className={classes.button} variant="contained" color="primary" onClick={startGame}>Начать</Button>
 
         </div>
     )

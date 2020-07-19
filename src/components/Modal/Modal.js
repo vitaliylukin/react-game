@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Portal from '../Portal/Portal';
-import Button from '../Button/Button';
+import Button from '@material-ui/core/Button';
+import Icon from '@material-ui/core/Icon';
 
 import './Modal.css';
 
@@ -18,12 +19,13 @@ const Modal = ({
                     <div className="modalWindow">
                         <div className="modalHeader">
                             <div className="modalTitle">{title}</div>
+                            <Icon style={{cursor: 'pointer'}} onClick={onCancel}>close</Icon>
                         </div>
                         <div className="modalBody">
                             {children}
                         </div>
                         <div className="modalFooter">
-                            <Button onClick={onCancel}>Закрыть</Button>
+                            <Button variant="contained" color="primary" onClick={onCancel}>Закрыть</Button>
                         </div>
                     </div>
                 </div>
