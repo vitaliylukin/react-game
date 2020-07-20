@@ -17,18 +17,50 @@ class App extends Component {
             changeTime: 2000,
             isOpen: false,
             currentCell: null,
+            prevCurrentCell: null,
             userCell: null,
+            prevUserCell: null,
             errorCell: null,
+            prevErrorCell: null,
+            winner: false
         };
     }
 
     /*Функция рандомного выбора ячейки компьютером*/
     getRandom = () => {
+
+       /* this.setState({
+            playerPoint: 0,
+            computerPoint: 0,
+            playerName: '',
+            isOpen: false,
+            currentCell: null,
+            userCell: null,
+            errorCell: null,
+            prevErrorCell: null,
+            winner: false
+        });*/
+
+        console.log(this.state);
+
         let random;
+
         let idInterval = setInterval(() => {
             random = Math.floor(Math.random()*this.state.cells.length);
             this.setState({
                 currentCell: random
+            });
+            if (!this.state.winner) {
+                this.setState(prevState => {
+                    return {
+                        prevErrorCell: prevState.errorCell,
+                        winner: false,
+                        computerPoint: prevState.computerPoint + 1
+                    }
+                });
+            }
+            this.setState({
+                errorCell: random
             });
             if (this.state.playerPoint > 9) {
                 this.setState({
@@ -53,6 +85,7 @@ class App extends Component {
             this.setState(prevState => {
                 return {
                     userCell: name,
+                    winner: true,
                     playerPoint: prevState.playerPoint + 1
                 }
             })
@@ -60,9 +93,20 @@ class App extends Component {
             this.setState(prevState => {
                 return {
                     errorCell: name,
+                    winner: true,
                     computerPoint: prevState.computerPoint + 1
                 }
-            })
+            });
+            let idTimeout = setTimeout(() => {
+                this.setState(prevState => {
+                    return {
+                        prevErrorCell: prevState.errorCell,
+                        errorCell: null
+                    }
+                });
+
+            }, this.state.changeTime);
+            clearTimeout(idTimeout);
         }
     };
 
@@ -81,13 +125,22 @@ class App extends Component {
     };
 
     handleCancel = () => {
-        console.log('Cancel function!');
         this.setState({
-            isOpen: false
+            playerPoint: 0,
+            computerPoint: 0,
+            playerName: '',
+            isOpen: false,
+            currentCell: null,
+            userCell: null,
+            errorCell: null,
+            prevErrorCell: null,
+            winner: false
         });
     };
 
     render() {
+
+        console.log(this.state.errorCell, this.state.prevErrorCell, this.state.currentCell);
 
         return (
             <Layout>
@@ -111,9 +164,13 @@ class App extends Component {
                             <TableCell
                                 key={index}
                                 name={index + 1}
+
+                                {/*this.state.arr.include(index)*/}
+
                                 isCurrent={index === this.state.currentCell}
+
                                 isUser={index === this.state.userCell}
-                                isError={index === this.state.errorCell}
+                                isError={index === this.state.errorCell || index === this.state.prevErrorCell}
                                 onChangeButton={this.onChangeButton.bind(this, index)}
                             />
                         )

@@ -10,7 +10,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 
-const TopPanel = ({playerPoint, computerPoint, changeTime, startGame}) => {
+const TopPanel = ({playerPoint, computerPoint, changeTime, startGame, name}) => {
 
     const useStyles = makeStyles({
         button: {
