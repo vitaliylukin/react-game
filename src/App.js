@@ -164,11 +164,7 @@ class App extends Component {
                             <TableCell
                                 key={index}
                                 name={index + 1}
-
-                                {/*this.state.arr.include(index)*/}
-
                                 isCurrent={index === this.state.currentCell}
-
                                 isUser={index === this.state.userCell}
                                 isError={index === this.state.errorCell || index === this.state.prevErrorCell}
                                 onChangeButton={this.onChangeButton.bind(this, index)}
